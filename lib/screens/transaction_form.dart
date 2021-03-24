@@ -138,25 +138,29 @@ class _TransactionFormState extends State<TransactionForm> {
     final Transaction transaction =
     await _webClient.save(transactionCreated, password).catchError((e) {
 
-      FirebaseCrashlytics.instance.setCustomKey('exeption', e.toString());
-      FirebaseCrashlytics.instance.setCustomKey('http_body', transactionCreated.toString());
-      FirebaseCrashlytics.instance.recordError(e, null);
-
+      if (FirebaseCrashlytics.instance.isCrashlyticsCollectionEnabled) {
+        FirebaseCrashlytics.instance.setCustomKey('exeption', e.toString());
+        FirebaseCrashlytics.instance.setCustomKey('http_body', transactionCreated.toString());
+        FirebaseCrashlytics.instance.recordError(e, null);
+      }
       _showFailureMessage(context, message: e.message);
     }, test: (e) => e is HttpException).catchError((e) {
 
-      FirebaseCrashlytics.instance.setCustomKey('exeption', e.toString());
-      FirebaseCrashlytics.instance.setCustomKey('http_code', e.statusCode);
-      FirebaseCrashlytics.instance.setCustomKey('http_body', transactionCreated.toString());
-      FirebaseCrashlytics.instance.recordError(e, null);
-
+      if (FirebaseCrashlytics.instance.isCrashlyticsCollectionEnabled) {
+        FirebaseCrashlytics.instance.setCustomKey('exeption', e.toString());
+        FirebaseCrashlytics.instance.setCustomKey('http_code', e.statusCode);
+        FirebaseCrashlytics.instance.setCustomKey('http_body', transactionCreated.toString());
+        FirebaseCrashlytics.instance.recordError(e, null);
+      }
       _showFailureMessage(context,
           message: 'timeout submitting the transaction');
     }, test: (e) => e is TimeoutException).catchError((e) {
 
-      FirebaseCrashlytics.instance.setCustomKey('exeption', e.toString());
-      FirebaseCrashlytics.instance.setCustomKey('http_body', transactionCreated.toString());
-      FirebaseCrashlytics.instance.recordError(e, null);
+      if (FirebaseCrashlytics.instance.isCrashlyticsCollectionEnabled) {
+        FirebaseCrashlytics.instance.setCustomKey('exeption', e.toString());
+        FirebaseCrashlytics.instance.setCustomKey('http_body', transactionCreated.toString());
+        FirebaseCrashlytics.instance.recordError(e, null);
+      }
 
       _showFailureMessage(context);
     }).whenComplete(() {
