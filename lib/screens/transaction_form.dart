@@ -8,6 +8,7 @@ import 'package:alura_crashlytics/models/contact.dart';
 import 'package:alura_crashlytics/models/transaction.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:giffy_dialog/giffy_dialog.dart';
 import 'package:toast/toast.dart';
 import 'package:uuid/uuid.dart';
 
@@ -182,7 +183,24 @@ class _TransactionFormState extends State<TransactionForm> {
     // final snackBar = SnackBar(content: Text(message));
     // _scaffoldKey.currentState.showSnackBar(snackBar);
 
-    showToast(message, gravity: Toast.BOTTOM);
+    // showToast(message, gravity: Toast.BOTTOM);
+
+    showDialog(
+      context: context,builder: (_) => NetworkGiffyDialog(
+      image: Image.asset('images/error.gif'),
+      title: Text('OPS',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 22.0,
+              fontWeight: FontWeight.w600)),
+        description: Text(message, textAlign: TextAlign.center,
+        ),
+        entryAnimation: EntryAnimation.BOTTOM,
+        onOkButtonPressed: () {},
+      
+      )
+    );
+
 
     // showDialog(
     //     context: context,
