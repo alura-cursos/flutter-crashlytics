@@ -29,11 +29,8 @@ Neste curso você aprenderá a gerenciar as exceções, erros e falhas de qualqu
 
 Depois de baixar o projeto, você pode abri-lo com o Android Studio. Para fazer isso, na tela do iniciador, clique em:
 
-- ** Abra um projeto existente ** (ou opção semelhante)
+- **Abra um projeto existente** (ou opção semelhante)
 - Navegue até o local onde está o projeto e selecione-o (se o projeto for baixado via zip, é necessário extraí-lo antes de buscá-lo)
 - Por fim, clique em OK
 
 O Android Studio deve executar algumas tarefas do Gradle para configurar o projeto, espere até que termine. Ao terminar as tarefas, você pode executar o aplicativo
-
-## 📚 Outras informações
-
